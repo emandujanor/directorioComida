@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Directorio:Comida</title>
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="css/style.css" media="screen,projection" />
+
+</head>
+
+<body>
+  <header class="container-fluid">
+    <nav>
+      <div class="nav-wrapper">
+        <span class="brand-logo center">Mi Comida .com</span>
+      </div>
+    </nav>
+  </header>
+  <section class="container-fluid row">
+    <div class="col s12 m12 l12 map" id="map"> </div>
+  </section>
+  <section class="container-fluid row">
+    <nav>
+      <div class="nav-wrapper">
+        <form>
+          <div class="input-field">
+            <input id="search" type="search" required>
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+        </form>
+      </div>
+    </nav>
+
+    <div class="col s12 m12 l12" id="contenedorTarjetas">
+      <div class="col s12 m7">
+        <h2 class="header">Horizontal Card</h2>
+        <div class="card horizontal">
+          <div class="card-image">
+            <img src="http://via.placeholder.com/120x120">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFiQxLch73H_Ix97GTi1NvmOkOLtqObVo&callback=initMap">  </script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>
