@@ -1,15 +1,19 @@
 /*inicia mapa*/
-function initMap() {
-var uluru = {lat: 19.4176848, lng: -99.16699};
+function mostrarMapa(coordenadas) {
+//var coordenadas = {lat: 19.4176848, lng: -99.16699};
 var map = new google.maps.Map(document.getElementById('map'), {
   zoom: 18,
-  center: uluru
+  center: coordenadas
 });
 var marker = new google.maps.Marker({
-  position: uluru,
+  position: coordenadas,
   map: map
 });
 }
+
+
+
+
 
 var lugares = [
 	{
@@ -44,7 +48,7 @@ var lugares = [
   }
 ];
 
-var plantillaLugares =   '<div class="col s12 m7">' +
+var plantillaLugares =   '<div class="col s12 m7 lugarNombre" data-longitud="__longitud__" data-latitud="__latitud__">' +
     '<h2 class="header">__nombre__</h2>' +
     '<div class="card horizontal">' +
       '<div class="card-image">' +
@@ -61,13 +65,51 @@ var plantillaLugares =   '<div class="col s12 m7">' +
   var mostrarLugares = function (lugares) {
   	var plantillaFinal = "";
   	lugares.forEach(function (lugares) {
-  		plantillaFinal += plantillaLugares.replace("__nombre__", lugares.nombre)
+  		plantillaFinal += plantillaLugares.replace("__nombre__", lugares.nombre)  .replace("__direccion__", lugares.direccion)
+        .replace("__latitud__", lugares.lat)
+        .replace("__longitud__", lugares.log)
   			.replace("__direccion__", lugares.direccion);
   	});
   	$("#contenedorTarjetas").html(plantillaFinal);
   };
 
 
+  function cambiarUbicacion() {
+    var latitud = $(this).data("latitud");
+    var longitud = $(this).data("longitud");
+
+    var coordenadas = {
+      lat: latitud,
+      lng: longitud
+    };
+    mostrarMapa(coordenadas);
+  };
+
+  function obtenerUbicacionActual() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(mostrarPosicionActual);
+    } else {
+      alert("Geolocalización no es soportado en tu navegador");
+    }
+  }
+
+  function mostrarPosicionActual(posicion) {
+    var latitud = posicion.coords.latitude;
+    var longitud = posicion.coords.longitude;
+
+    var coordenadas = {
+      lat: latitud,
+      lng: longitud
+    };
+
+    mostrarMapa(coordenadas);
+  }
+
+
+
 $(document).ready(function(){
+  obtenerUbicacionActual();
   mostrarLugares(lugares);
+
+  $(".lugarNombre").click(cambiarUbicacion);
 });
