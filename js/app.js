@@ -111,5 +111,7 @@ $(document).ready(function() {
   obtenerUbicacionActual();
   mostrarLugares(lugares);
   $("#busqueda-form").submit(filtrarLugares);
-  $(".lugarNombre").click(cambiarUbicacion);
+//  $(".lugarNombre").click(cambiarUbicacion);
+  $(document).on("click",".lugarNombre",  cambiarUbicacion);
+
 });
